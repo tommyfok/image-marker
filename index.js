@@ -7,8 +7,8 @@ new Vue({
         rects: [],
         draggingRect: null,
         mousepos: [],
-        imageUrl: '/car.jpg',
-        inputImageUrl: '/car.jpg',
+        imageUrl: 'https://tommyfok.github.io/image-marker/car.jpg',
+        inputImageUrl: 'https://tommyfok.github.io/image-marker/car.jpg',
         imageInfo: {
             width: 0,
             height: 0
