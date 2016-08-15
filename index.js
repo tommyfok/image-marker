@@ -116,33 +116,40 @@ new Vue({
         mousedown: function (e) {
             var pos = [e.offsetX, e.offsetY];
             var currentRect = this.rectIndex > -1 ? this.rects[this.rectIndex] : undefined;
-            if (currentRect && !currentRect.end) {
-                currentRect.end = pos;
-                this.rectIndex = -1;
-            } else {
-                var hitRects = this.hitRects(pos);
-                if (hitRects.length > 0) {
-                    this.$set('draggingRect', hitRects[hitRects.length - 1]);
-                    this.draggingRect.isDragging = true;
-                    this.draggingRect.dragStart.start = this.copy(this.draggingRect.start);
-                    this.draggingRect.dragStart.end = this.copy(this.draggingRect.end);
-                    this.draggingRect.dragStart.mouse = pos;
+            var hitRects = this.hitRects(pos);
+            var topRect = hitRects[hitRects.length - 1];
+            if (e.button === 0) {
+                if (currentRect && !currentRect.end) {
+                    currentRect.end = pos;
+                    this.rectIndex = -1;
                 } else {
-                    currentRect = {
-                        isDragging: false,
-                        start: pos,
-                        dragStart: {
-                            start: undefined,
-                            end: undefined,
-                            mouse: undefined
-                        },
-                        end: undefined //一定要有这个属性之后赋值才会被检测到
-                    };
-                    this.rects.push(currentRect);
-                    this.rectIndex = this.rects.indexOf(currentRect);
+                    if (hitRects.length > 0) {
+                        this.$set('draggingRect', topRect);
+                        this.draggingRect.isDragging = true;
+                        this.draggingRect.dragStart.start = this.copy(this.draggingRect.start);
+                        this.draggingRect.dragStart.end = this.copy(this.draggingRect.end);
+                        this.draggingRect.dragStart.mouse = pos;
+                    } else {
+                        currentRect = {
+                            isDragging: false,
+                            start: pos,
+                            dragStart: {
+                                start: undefined,
+                                end: undefined,
+                                mouse: undefined
+                            },
+                            end: undefined //一定要有这个属性之后赋值才会被检测到
+                        };
+                        this.rects.push(currentRect);
+                        this.rectIndex = this.rects.indexOf(currentRect);
+                    }
                 }
+                this.isDown = true;
+            } else if (topRect && (e.button === 2)) {
+                e.preventDefault();
+                e.stopPropagation();
+                this.rects.splice(this.rects.indexOf(topRect), 1);
             }
-            this.isDown = true;
         },
         mouseup: function () {
             if (this.isDown && this.isDragging) {

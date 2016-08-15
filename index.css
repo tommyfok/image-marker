@@ -91,12 +91,12 @@
 
 .rect {
     position: absolute;
-    background: rgba(255, 255, 255, .2);
-    border: 1px solid rgba(255, 255, 255, .5);
+    background: none;
+    border: 1px solid #3f3;
     box-sizing: border-box;
     cursor: move;
     overflow: hidden;
-    box-shadow: 0 0 3px rgba(0,0,0,.2);
+    -webkit-transition: background .3s ease-out;
 }
 
 .del {
@@ -116,8 +116,7 @@
 
 .rect.active {
     background: rgba(255,100,50,.2);
-    border-color: rgba(255,100,50,.8);
-    box-shadow: none;
+    border-color: rgba(255,100,50,1);
 }
 
 .rect.selected {

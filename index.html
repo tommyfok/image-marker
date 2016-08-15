@@ -9,6 +9,7 @@
     <div class="wrapper">
         <div class="stage-mask"
              @mouseup="mouseup"
+             @contextmenu.prevent
              @mousedown="mousedown"
              @mousemove="mousemove"
              :class="{isDown:isDown}"></div>
