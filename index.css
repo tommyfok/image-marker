@@ -1,0 +1,132 @@
+[v-cloak] {
+    display: none;
+}
+
+#imgLoader {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 1px;
+    height: 1px;
+    opacity: .01;
+    overflow: hidden;
+}
+
+.w40 {width:40px}
+.w100 {width:100px}
+.h40 {height:40px}
+.h100 {height:100px}
+
+.mainImg {
+    width: 100%;
+    height: 100%;
+}
+
+.imageUrl {
+    box-sizing: border-box;
+    width: 100%;
+}
+
+.pre {
+    margin: 5px 0;
+    background-color: #eee;
+    background-repeat: no-repeat;
+    position: relative;
+}
+
+.pre:after {
+    content: "";
+    display: block;
+    position: absolute;
+    left: 50%;
+    margin-left: -.5px;
+    width: 1px;
+    height: 100%;
+    top: 0;
+    background: red;
+    opacity: .4;
+}
+
+.pre:before {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 50%;
+    margin-top: -.5px;
+    height: 1px;
+    width: 100%;
+    left: 0;
+    background: red;
+    opacity: .4;
+}
+
+.wrapper {
+    width: 750px;
+    height: 480px;
+    margin: 0 auto;
+    position: relative;
+}
+
+.stage,
+.stage-mask {
+    width: 640px;
+    height: 480px;
+    background: #eee;
+    position: absolute;
+    -webkit-user-select: none;
+    left: 0;
+    top: 0;
+    z-index: 10;
+    overflow: hidden;
+}
+
+.stage-mask {
+    z-index: 100;
+    background: none;
+}
+
+.stage-mask.isDown {
+    cursor: pointer;
+}
+
+.rect {
+    position: absolute;
+    background: rgba(255, 255, 255, .2);
+    border: 1px solid rgba(255, 255, 255, .5);
+    box-sizing: border-box;
+    cursor: move;
+    overflow: hidden;
+    box-shadow: 0 0 3px rgba(0,0,0,.2);
+}
+
+.del {
+    position: absolute;
+    right: 0;
+    top: 0;
+    font-size: 12px;
+    width: 12px;
+    height: 12px;
+    text-align: center;
+    -webkit-transform: rotate(45deg);
+}
+
+.rect.active .del {
+    display: none;
+}
+
+.rect.active {
+    background: rgba(255,100,50,.2);
+    border-color: rgba(255,100,50,.8);
+    box-shadow: none;
+}
+
+.rect.selected {
+    border-color: rgba(255,100,50,8);
+}
+
+.aside {
+    position: absolute;
+    left: 650px;
+    top: 0;
+    width: 100px;
+}

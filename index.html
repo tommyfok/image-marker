@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>DEMO</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+<body v-cloak>
+    <div class="wrapper">
+        <div class="stage-mask"
+             @mouseup="mouseup"
+             @mousedown="mousedown"
+             @mousemove="mousemove"
+             :class="{isDown:isDown}"></div>
+        <div class="stage">
+            <img class="mainImg" :src="imageUrl">
+            <div class="rect"
+                 v-for="rect in rects"
+                 :style="getRectStyle(rect)"
+                 :class="{active:rect.isDragging,selected:selectedIndex===$index}"></div>
+        </div>
+        <div class="aside">
+            <span>局部放大预览</span>
+            <div class="pre" :style="getPreviewBg(100, 100)"></div>
+            <span>车辆预览</span>
+            <div class="pre" :style="getPreviewBg(40, 40)"></div>
+            <span>行人预览</span>
+            <div class="pre" :style="getPreviewBg(40, 100)"></div>
+            <span>图片路径</span>
+            <input v-model="inputImageUrl" class="imageUrl" @keydown.enter="setImgUrl">
+            <input type="button" value="取结果" @click="getResult">
+            <input type="button" value="清除选框" @click="clear" v-show="rects.length">
+        </div>
+    </div>
+    <!-- <script src="http://cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script> -->
+    <script src="http://cdn.bootcss.com/vue/1.0.26/vue.min.js"></script>
+    <script src="index.js"></script>
+</body>
+</html>
