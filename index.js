@@ -88,7 +88,7 @@ new Vue({
             var self = this;
             var outRects = [];
             self.rects.forEach(function (rect) {
-                if (self.inRect(pos, rect)) {
+                if (rect.end && (typeof rect.end[0] === 'number') && self.inRect(pos, rect)) {
                     outRects.push(rect);
                 }
             });
