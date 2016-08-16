@@ -14,6 +14,8 @@
              @mousemove="mousemove"
              :class="{isDown:isDown}"></div>
         <div class="stage">
+            <div class="line v" :style="{left:mousepos[0]+'px'}"></div>
+            <div class="line h" :style="{top:mousepos[1]+'px'}"></div>
             <img class="mainImg" :src="imageUrl">
             <div class="rect"
                  v-for="rect in rects"
